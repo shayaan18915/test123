@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage ('checkout'){
             steps {
-                git branch: 'main', url: 'https://github.com/ishaqmdgcp/gcp-devops.git'
+                git branch: 'main', url: 'https://github.com/maslab/gcp-devops.git'
             }
         }
       
@@ -36,20 +36,12 @@ pipeline {
 		 }
 	 }
 				 
-	stage('Terraform Plan') {
-		 steps {  
-			  dir('VM-VPC')
-			 {
-                sh 'terraform plan'
-			 }
-		 }
-	}
-				 
+			 
 	stage('Terraform Apply') {
 		 steps {  
 			  dir('VM-VPC')
 			 {
-                sh 'terraform apply -auto-approve'
+                sh 'terraform  $TF_ACION $TF_APPROVE'
 			 }
 		 }
 	}
